@@ -23,7 +23,11 @@ node(){
             def pexpect = sh returnStatus: true, script: 'python -c "import pexpect"'
             def jenkins = sh returnStatus: true, script: 'python -c "import jenkins"'
             def jenkinsapi = sh returnStatus: true, script: 'python -c "import jenkinsapi"'
-            if (pexpect == 1 || jenkins == 1 || jenkinsapi == 1){
+            def xlwt = sh returnStatus: true, script: 'python -c "import xlwt"'
+            def xlrd = sh returnStatus: true, script: 'python -c "import xlrd"'
+            def xlutils = sh returnStatus: true, script: 'python -c "from xlutils.copy import copy"'
+
+            if (pexpect == 1 || jenkins == 1 || jenkinsapi == 1 || xlwt == 1 || xlrd == 1 || xlutils ==1){
                 install()
                 echo "Installed Successfully"    
             }
@@ -55,4 +59,7 @@ def install(){
     sh "pip install pexpect"
     sh "pip install python-jenkins"
     sh "pip install jenkinsapi"
+    sh "pip install xlwt"
+    sh "pip install xlrd"
+    sh "pip install xlutils"
 }
